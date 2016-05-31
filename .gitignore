@@ -1,0 +1,5 @@
+*.DS_Store
+*/Thumbs.db
+Notes.txt
+sftp-config.json
+spor/spor/secret_settings.py

@@ -1,0 +1,58 @@
+{% extends 'home/wrapper.html' %}
+
+{% block content %}
+
+<!-- Page Heading/Breadcrumbs -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Investigations
+      <small>Subheading</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="active">Investigations</li>
+    </ol>
+  </div>
+</div>
+<!-- /.row -->
+
+{% for case in cases reversed %}
+{% if case.public %}
+<!-- Project One -->
+<div class="row">
+  <div class="col-md-7">
+    <a href="/investigations/case/{{ case.slug }}">
+      <img class="img-responsive img-hover img-rounded" src="{{ MEDIA_URL }}{{ case.thumbnail_700x300.url }}" alt="">
+    </a>
+  </div>
+  <div class="col-md-5">
+    <h3>{{ case.name }}</h3>
+    <h4>{{ case.case_number }}</h4>
+    <p>{{ case.short_description }}</p>
+    <a class="btn btn-primary" href="/investigations/case/{{ case.slug }}">View Case</i></a>
+  </div>
+</div><!-- /.row -->
+
+<hr/>
+{% if forloop.last %}
+<!-- Pagination -->
+<div class="row text-center">
+  <div class="col-lg-12">
+    <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+  </div>
+</div><!-- /.row -->
+{% endif %}
+{% endif %}
+{% empty %}
+<h4>There are currently no public investigations at this time.</h4>
+{% endfor %}
+
+{% endblock %}

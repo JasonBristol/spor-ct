@@ -1,0 +1,80 @@
+{% extends 'home/base.html' %}
+
+{% block properties %}{% endblock %}
+
+{% block inlinecss %}{% endblock %}
+
+{% block alerts %}
+{% for alert in site_alerts %}
+{% if alert.enabled %}
+<div class="container-fluid" {% if forloop.first %}style="margin-top: 20px;"{% endif %}>
+  <div class="alert alert-block alert-{{ alert.severity }} {% if alert.dismissable %}alert-dismissible{% endif %}" role="alert">
+    {% if alert.dismissable %}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{% endif %}
+    <strong>
+      {% if alert.severity == 'info' %}
+        <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
+      {% elif alert.severity == 'success' %}
+        <i class="fa fa-check-circle fa-fw" aria-hidden="true"></i>
+      {% elif alert.severity == 'warning' %}
+        <i class="fa fa-exclamation-circle fa-fw" aria-hidden="true"></i>
+      {% elif alert.severity == 'danger' %}
+        <i class="fa fa-times-circle fa-fw" aria-hidden="true"></i>
+      {% endif %}
+      {{ alert.header }}
+    </strong> {{ alert.body }}
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endblock %}
+
+{% block wrapper %}
+{% block content %}{% endblock %}
+{% block modals %}
+{% for modal in modals %}
+{% if modal.enabled %}
+<div class="modal fade" tabindex="-1" role="dialog" id="siteModal_{{ forloop.counter }}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-{{ modal.severity }}">
+          {% if modal.severity == "info" %}
+            <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i> {{ modal.severity|title }}: 
+          {% elif modal.severity == "success" %}
+            <i class="fa fa-check-circle fa-fw" aria-hidden="true"></i> {{ modal.severity|title }}:
+          {% elif modal.severity == "warning" %}
+            <i class="fa fa-exclamation-circle fa-fw" aria-hidden="true"></i> {{ modal.severity|title }}: 
+          {% elif modal.severity == "danger" %}
+            <i class="fa fa-times-circle fa-fw" aria-hidden="true"></i> {{ modal.severity|title }}: 
+          {% endif %}
+          {{ modal.header }}
+        </h4>
+      </div>
+      <div class="modal-body">
+        {{ modal.body|safe }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endif %}
+{% endfor %}
+{% endblock %}
+
+{% endblock %}
+
+{% block inlinejs %}
+<script type="text/javascript">
+  $(window).load(function(){
+    {% for modal in modals %}
+    {% if modal.popup %}
+    $("[id^=siteModal]").modal('show');
+    {% endif %}
+    {% endfor %}
+  });
+</script>
+{% endblock %}
