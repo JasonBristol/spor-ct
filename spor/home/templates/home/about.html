@@ -44,9 +44,9 @@
 				</h3>
 				<p>{{ i.description }}</p>
 				<ul class="list-inline">
-					{% if i.facebook %}<li><a href="{{ i.facebook_url }}"><i class="fa fa-2x fa-facebook-square"></i></a></li>{% endif %}
-					{% if i.linkedin %}<li><a href="{{ i.linkedin_url }}"><i class="fa fa-2x fa-linkedin-square"></i></a></li>{% endif %}
-					{% if i.twitter %}<li><a href="{{ i.twitter_url }}"><i class="fa fa-2x fa-twitter-square"></i></a></li>{% endif %}
+					{% if i.facebook %}<li><a target="_blank" href="{{ i.facebook_url }}"><i class="fa fa-2x fa-facebook-square"></i></a></li>{% endif %}
+					{% if i.linkedin %}<li><a target="_blank" href="{{ i.linkedin_url }}"><i class="fa fa-2x fa-linkedin-square"></i></a></li>{% endif %}
+					{% if i.twitter %}<li><a target="_blank" href="{{ i.twitter_url }}"><i class="fa fa-2x fa-twitter-square"></i></a></li>{% endif %}
 				</ul>
 			</div>
 		</div>
