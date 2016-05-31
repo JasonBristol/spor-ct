@@ -21,13 +21,13 @@ class TeamMember(models.Model):
     class Meta:
         verbose_name="Team Member"
 
-class Customer(models.Model):
+class Partner(models.Model):
     name = models.CharField(max_length=50)
     thumbnail = models.ImageField(upload_to="images/customers", help_text="500x300 works the best")
     url = models.URLField(blank=True)
 
     def __unicode__(self):
-        return "Customer: {name}".format(name=self.name)
+        return self.name
 
 class Contact(models.Model):
     address = models.CharField(max_length=50)

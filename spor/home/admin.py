@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TeamMember, Customer, Contact, Banner, Alert, Modal
+from .models import TeamMember, Partner, Contact, Banner, Alert, Modal
 # from django import forms
 # from django.core.validators import EMPTY_VALUES
 
@@ -37,10 +37,10 @@ class TeamMemberAdmin(admin.ModelAdmin):
 
 admin.site.register(TeamMember, TeamMemberAdmin)
 
-class CustomerAdmin(admin.ModelAdmin):
+class PartnerAdmin(admin.ModelAdmin):
 	pass
 
-admin.site.register(Customer, CustomerAdmin)
+admin.site.register(Partner, PartnerAdmin)
 
 class ContactAdmin(admin.ModelAdmin):
 	pass
