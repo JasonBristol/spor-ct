@@ -3,3 +3,4 @@
 Notes.txt
 sftp-config.json
 spor/spor/secret_settings.py
+*.pyc
