@@ -37,6 +37,7 @@ class Contact(models.Model):
     phone = models.CharField(max_length=25)
     email = models.EmailField()
     hours = models.CharField(max_length=255)
+    google_map_url = models.CharField(max_length=255, blank=True, null=True)
     facebook = models.BooleanField(default=True)
     facebook_url = models.URLField(blank=True)
     twitter = models.BooleanField(default=True)
@@ -45,6 +46,7 @@ class Contact(models.Model):
     lindedin_url = models.URLField(blank=True)
     gplus = models.BooleanField(default=True)
     gplus_url = models.URLField(blank=True)
+    primary_contact = models.BooleanField(default=False)
 
     def __unicode__(self):
         return "{address} {city}, {state} {zipcode}".format(
@@ -53,6 +55,13 @@ class Contact(models.Model):
             state=self.state,
             zipcode=self.zipcode
         )
+
+    def save(self, *args, **kw):
+        if not self.google_map_url:
+            from django.conf import settings
+            uri = "{address},{city}+{state}".format(address=self.address.replace(" ", "+"), city=self.city, state=self.state)
+            self.google_map_url = "https://www.google.com/maps/embed/v1/place?key={key}&q={uri}".format(key=settings.GOOGLE_MAPS_EMBED_API_KEY, uri=uri)
+        super(Contact, self).save(*args, **kw)
 
 class Banner(models.Model):
     image = models.ImageField(upload_to="images/banners")

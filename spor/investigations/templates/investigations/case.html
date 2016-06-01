@@ -61,7 +61,7 @@
 		<p>
 			<span><strong>Case Manager:</strong> {{ case.case_manager.first_name }} {{ case.case_manager.last_name }}</span>
 			<br>
-			<span><strong>Location:</strong> {{ case.location }}</span>
+			<span><strong>Location:</strong> {{ case.full_address }}</span>
 			<br>
 			{% if case.date_occured %}
 			<span><strong>Date Occured:</strong> {{ case.date_occured }}</span>

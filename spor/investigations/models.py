@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from home.models import TeamMember
+from home.models import TeamMember, Contact
 from django.contrib.auth.models import User
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
@@ -123,7 +123,7 @@ class Case(models.Model):
     thumbnail_200x100 = ImageSpecField(source='thumbnail', processors=[ResizeToFill(200, 100)], format='PNG', options={'quality': 100})
     thumbnail_500x300 = ImageSpecField(source='thumbnail', processors=[ResizeToFill(500, 300)], format='PNG', options={'quality': 100})
     thumbnail_700x300 = ImageSpecField(source='thumbnail', processors=[ResizeToFill(700, 300)], format='PNG', options={'quality': 100})
-    location = models.CharField(max_length=255) # Setup a panel
+    location = models.ForeignKey(Contact)
     google_map = models.CharField(max_length=255, blank=True, null=True, help_text="Please paste markup for an embeded <a href='https://www.google.com/maps'>Google Map</a>")
     date_occured = models.DateTimeField(blank=True, null=True)
     short_description = models.CharField(max_length=255)
@@ -144,6 +144,9 @@ class Case(models.Model):
 
     def __unicode__(self):
         return self.case_number
+
+    def full_address(self):
+        return str(self.location)
 
     def save(self, *args, **kw):
         self.slug = slugify(self.case_number)
