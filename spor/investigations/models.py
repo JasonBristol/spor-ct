@@ -18,6 +18,15 @@ class AudioEvidence(models.Model):
     def __unicode__(self):
         return self.label
 
+    def extension(self):
+        import os
+        name, extension = os.path.splitext(self.file.name)
+        if extension.lower() in ['.mp4', '.mp3']:
+            return 'mpeg'
+        if extension.lower() == '.ogg':
+            return 'ogg'
+        return 'other'
+
 class ImageEvidence(models.Model):
     label = models.CharField(max_length=50)
     file = models.ImageField(upload_to="investigation/{0}/image".format(1))

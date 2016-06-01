@@ -87,11 +87,76 @@
 <div class="row">
 
 	<div class="col-lg-12">
-		<h3 class="page-header">Evidence</h3>
+		<h3 class="page-header">Audio Evidence</h3>
 	</div>
 
-	<div class="col-md-12">
-		<p>No evidence was collected for this investigation.</p>
+	<div class="col-lg-12">
+		{% for a in case.audio_evidence.all %}
+		<h4>{{ a.label }}</h4>
+		<p>{{ a.details }}</p>
+		<audio controls>
+		  <source src="{{ MEDIA_URL }}{{ a.file.url }}" type="audio/{{ a.extension }}">
+			Your browser does not support the audio element.
+		</audio>
+		{% empty %}
+		<p>No audio evidence was collected for this investigation.</p>
+		{% endfor %}
+	</div>
+
+	<div class="col-lg-12">
+		<h3 class="page-header">Image Evidence</h3>
+	</div>
+
+	<div class="col-lg-12">
+		{% for i in case.image_evidence.all %}
+		<h4>{{ i.label }}</h4>
+		<p>{{ i.details }}</p>
+		<img class="img-responsive img-rounded" src="{{ MEDIA_URL }}{{ i.file.url }}}" alt="{{ i.label }}">
+		{% empty %}
+		<p>No images were collected for this investigation.</p>
+		{% endfor %}
+	</div>
+
+	<div class="col-lg-12">
+		<h3 class="page-header">Video Evidence</h3>
+	</div>
+
+	<div class="col-lg-12">
+		{% for v in case.video_evidence.all %}
+		<h4>{{ v.label }}</h4>
+		<p>{{ v.details }}</p>
+		<p></p>
+		{% empty %}
+		<p>No video evidence was collected for this investigation.</p>
+		{% endfor %}
+	</div>
+
+	<div class="col-lg-12">
+		<h3 class="page-header">Personal Experiences</h3>
+	</div>
+
+	<div class="col-lg-12">
+		{% for p in case.personal_experiences.all %}
+		<h4>{{ p.label }}</h4>
+		<p>{{ p.details }}</p>
+		<p></p>
+		{% empty %}
+		<p>No personal experiences were collected for this investigation.</p>
+		{% endfor %}
+	</div>
+
+	<div class="col-lg-12">
+		<h3 class="page-header">Misc Evidence</h3>
+	</div>
+
+	<div class="col-lg-12">
+		{% for m in case.misc_evidence.all %}
+		<h4>{{ m.label }}</h4>
+		<p>{{ m.details }}</p>
+		<p></p>
+		{% empty %}
+		<p>No misc evidence was collected for this investigation.</p>
+		{% endfor %}
 	</div>
 
 </div><!-- /.row -->
