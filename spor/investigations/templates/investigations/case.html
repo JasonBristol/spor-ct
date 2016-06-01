@@ -71,7 +71,7 @@
 			<br>
 			<span><strong>Conclusion:</strong> {{ case.get_conclusion_display }}</span>
 		</p>
-		<p>Evidence Repository: ...</p>
+		{% if case.evidence_repository %}<p><a target="_blank" href="{{ case.evidence_repository }}">Evidence Repository</a></p>{% endif %}
 		<h3>Parties Present</h3>
 		<ul>
 			{% for party in parties_present %}

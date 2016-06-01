@@ -8,6 +8,7 @@ class TeamMember(models.Model):
     title = models.CharField(max_length=50, default="Member")
     thumbnail = models.ImageField(upload_to="images/team", help_text="750x450 works the best")
     description = models.TextField()
+    date_joined = models.DateField(blank=True)
     facebook = models.BooleanField(default=False)
     facebook_url = models.URLField(blank=True)
     twitter = models.BooleanField(default=False)
