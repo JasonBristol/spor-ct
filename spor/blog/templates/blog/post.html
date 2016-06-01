@@ -1,7 +1,7 @@
 {% extends 'home/wrapper.html' %}
 
 {% block properties %}
-<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+<meta property="og:url" content="{{ current_uri }}" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="{{ post.title }}" />
 <meta property="og:description" content="{{ post.tagline }}" />
@@ -95,17 +95,19 @@
           <div id="content_wrapper" style="display: none;">
             <div class="container-fluid">
               <div class="btn-group-vertical hidden-xs">
-                <button class="btn btn-primary fb_share" type="button"><i class="fa fa-facebook-square fa-2x"></i></button>
-                <button class="btn btn-info" type="button" disabled="disabled"><i class="fa fa-twitter-square fa-2x"></i></button>
-                <button class="btn btn-danger" type="button" disabled="disabled"><i class="fa fa-google-plus-square fa-2x"></i></button>
-                <button class="btn btn-primary" type="button" disabled="disabled"><i class="fa fa-tumblr-square fa-2x"></i></button>
+                <a class="btn btn-primary fb_share"><i class="fa fa-facebook-square fa-2x"></i></a>
+                <!-- <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u={{ current_uri }}"><i class="fa fa-facebook-square fa-2x"></i></a> -->
+                <a class="btn btn-info" href="https://twitter.com/intent/tweet?url={{ current_uri }}&amp;via=spor_ct&amp;text={{ post.title }}&amp;hashtags={{ tags|join:"," }}"><i class="fa fa-twitter-square fa-2x"></i></a>
+                <a class="btn btn-danger share_btn" href="https://plus.google.com/share?url={{ current_uri }}"><i class="fa fa-google-plus-square fa-2x"></i></a>
+                <a class="btn btn-primary share_btn" href="http://www.tumblr.com/share/link?url={{ current_uri }}&amp;name={{ post.title }}&amp;description=test"><i class="fa fa-tumblr-square fa-2x"></i></a>
               </div>
 
               <div class="btn-group visible-xs">
-                <button class="btn btn-primary fb_share" type="button"><i class="fa fa-facebook-square fa-2x"></i></button>
-                <button class="btn btn-info" type="button" disabled="disabled"><i class="fa fa-twitter-square fa-2x"></i></button>
-                <button class="btn btn-danger" type="button" disabled="disabled"><i class="fa fa-google-plus-square fa-2x"></i></button>
-                <button class="btn btn-primary" type="button" disabled="disabled"><i class="fa fa-tumblr-square fa-2x"></i></button>
+                <a class="btn btn-primary fb_share"><i class="fa fa-facebook-square fa-2x"></i></a>
+                <!-- <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u={{ current_uri }}"><i class="fa fa-facebook-square fa-2x"></i></a> -->
+                <a class="btn btn-info" href="https://twitter.com/intent/tweet?url={{ current_uri }}&amp;via=spor_ct&amp;text={{ post.title }}&amp;hashtags={{ tags|join:"," }}"><i class="fa fa-twitter-square fa-2x"></i></a>
+                <a class="btn btn-danger share_btn" href="https://plus.google.com/share?url={{ current_uri }}"><i class="fa fa-google-plus-square fa-2x"></i></a>
+                <a class="btn btn-primary share_btn" href="http://www.tumblr.com/share/link?url={{ current_uri }}&amp;name={{ post.title }}&amp;description=test"><i class="fa fa-tumblr-square fa-2x"></i></a>
               </div>
             </div>
           </div>
@@ -197,7 +199,30 @@
     content:function(){
       return $($(this).data('contentwrapper')).html();
     }
-});
+  });
+
+  $(document).on("click", ".share_btn", function(event) {
+    window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=no,height=600,width=600');
+    return false;
+  });
+</script>
+<script id="tumblr-js" async src="https://assets.tumblr.com/share-button.js"></script>
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script>
+  !function(d, s , id) {
+    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+    if (!d.getElementById(id)) {
+      js = d.createElement(s); js.id = id;
+      js.src = p + '://platform.twitter.com/widgets.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }
+  }(document, 'script', 'twitter-wjs');
 </script>
 <script>
   window.fbAsyncInit = function() {
@@ -208,7 +233,7 @@
     });
   };
 
-  (function(d, s, id){
+  (function(d, s, id) {
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement(s); js.id = id;
@@ -222,7 +247,7 @@
       method: 'share',
       mobile_iframe: true,
       display: 'popup',
-      href: '{{ request.build_absolute_uri }}',
+      href: '{{ current_uri }}',
     }, function(response){});
   });
 </script>

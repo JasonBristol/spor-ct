@@ -15,6 +15,7 @@ class Project(models.Model):
     thumbnail_200x100 = ImageSpecField(source='thumbnail', processors=[ResizeToFill(200, 100)], format='PNG', options={'quality': 100})
     thumbnail_500x300 = ImageSpecField(source='thumbnail', processors=[ResizeToFill(500, 300)], format='PNG', options={'quality': 100})
     thumbnail_700x400 = ImageSpecField(source='thumbnail', processors=[ResizeToFill(700, 400)], format='PNG', options={'quality': 100})
+    thumbnail_750x500 = ImageSpecField(source='thumbnail', processors=[ResizeToFill(750, 500)], format='PNG', options={'quality': 100})
     document = models.FileField(upload_to="research/{0}/".format(1), blank=True)
     date_published = models.DateTimeField(auto_now=True)
     related_projects = models.ManyToManyField('self', blank=True)

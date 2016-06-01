@@ -70,10 +70,7 @@ TEMPLATES = [{
     'APP_DIRS': True,
     'OPTIONS': {
         'context_processors': [
-            'spor.context_processors.get_custom_settings',
-            'spor.context_processors.get_banners',
-            'spor.context_processors.get_alerts',
-            'spor.context_processors.get_modals',
+            'spor.context_processors.get_extras',
             'django.template.context_processors.debug',
             'django.template.context_processors.request',
             'django.contrib.auth.context_processors.auth',

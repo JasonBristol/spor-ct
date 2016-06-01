@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from django.utils.text import slugify
+import os
 
 class AudioEvidence(models.Model):
     label = models.CharField(max_length=50)
@@ -19,12 +20,13 @@ class AudioEvidence(models.Model):
         return self.label
 
     def extension(self):
-        import os
         name, extension = os.path.splitext(self.file.name)
-        if extension.lower() in ['.mp4', '.mp3']:
+        if extension.lower() == '.mp3':
             return 'mpeg'
         if extension.lower() == '.ogg':
             return 'ogg'
+        if extension.lower() == '.wav':
+            return 'wav'
         return 'other'
 
 class ImageEvidence(models.Model):
@@ -59,6 +61,16 @@ class VideoEvidence(models.Model):
 
     def __unicode__(self):
         return self.label
+
+    def extension(self):
+        name, extension = os.path.splitext(self.file.name)
+        if extension.lower() == '.mp4':
+            return 'mp4'
+        if extension.lower() in ['.ogg', '.ogv', '.ogm']:
+            return 'ogg'
+        if extension.lower() == '.webm':
+            return 'webm'
+        return 'other'
 
 class MiscEvidence(models.Model):
     label = models.CharField(max_length=50)
