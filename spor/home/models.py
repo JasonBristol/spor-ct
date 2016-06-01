@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 from django.db import models
 
 class TeamMember(models.Model):
-    fname = models.CharField(max_length=50, verbose_name="First Name")
-    lname = models.CharField(max_length=50, verbose_name="Last Name")
+    first_name = models.CharField(max_length=50, verbose_name="First Name")
+    last_name = models.CharField(max_length=100, verbose_name="Last Name")
     title = models.CharField(max_length=50, default="Member")
     thumbnail = models.ImageField(upload_to="images/team", help_text="750x450 works the best")
     description = models.TextField()
@@ -16,7 +16,7 @@ class TeamMember(models.Model):
     lindedin_url = models.URLField(blank=True)
 
     def __unicode__(self):
-        return "{fname} {lname}".format(fname=self.fname, lname=self.lname)
+        return "{fname} {lname}".format(fname=self.first_name, lname=self.last_name)
 
     class Meta:
         verbose_name="Team Member"

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Case, AudioEvidence, ImageEvidence, PersonalExperience, VideoEvidence, MiscEvidence
+from .models import Case, AudioEvidence, ImageEvidence, PersonalExperience, VideoEvidence, MiscEvidence, GuestInvestigator
 from imagekit.admin import AdminThumbnail
 
 class CaseAdmin(admin.ModelAdmin):
@@ -37,3 +37,8 @@ class MiscEvidenceAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(MiscEvidence, MiscEvidenceAdmin)
+
+class GuestInvestigatorAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(GuestInvestigator, GuestInvestigatorAdmin)

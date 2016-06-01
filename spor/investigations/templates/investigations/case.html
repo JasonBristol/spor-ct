@@ -56,16 +56,45 @@
 		<h3>Case Description</h3>
 		<p>{{ case.long_description }}</p>
 		<h3>Case Details</h3>
+		<p>
+			<span><strong>Case Manager:</strong> {{ case.case_manager.first_name }} {{ case.case_manager.last_name }}</span>
+			<br>
+			<span><strong>Location:</strong> {{ case.location }}</span>
+			<br>
+			{% if case.date_occured %}
+			<span><strong>Date Occured:</strong> {{ case.date_occured }}</span>
+			<br>
+			{% endif %}
+			<span><strong>Status:</strong> {{ case.get_status_display }}</span>
+			<br>
+			<span><strong>Conclusion:</strong> {{ case.get_conclusion_display }}</span>
+		</p>
+		<p>Evidence Repository: ...</p>
+		<h3>Parties Present</h3>
 		<ul>
-			<li>Lorem Ipsum</li>
-			<li>Dolor Sit Amet</li>
-			<li>Consectetur</li>
-			<li>Adipiscing Elit</li>
+			{% for party in parties_present %}
+			<li>{{ party.first_name }} {{ party.last_name }}</li>
+			{% empty %}
+			<li>There were no parties at this investigation, this is most likely in error.</li>
+			{% endfor %}
 		</ul>
 	</div>
 
 </div>
 <!-- /.row -->
+
+<!-- Evidence Row -->
+<div class="row">
+
+	<div class="col-lg-12">
+		<h3 class="page-header">Evidence</h3>
+	</div>
+
+	<div class="col-md-12">
+		<p>No evidence was collected for this investigation.</p>
+	</div>
+
+</div><!-- /.row -->
 
 <!-- Related Projects Row -->
 <div class="row">
@@ -74,7 +103,7 @@
 		<h3 class="page-header">Related Cases</h3>
 	</div>
 
-	{% for related in case.related_cases.all %}
+	{% for related in related_cases %}
 	<div class="col-sm-3 col-xs-6">
 		<a href="/investigations/case/{{ related.slug }}"><img class="img-responsive img-hover img-related img-rounded" src="{{ MEDIA_URL }}{{ related.thumbnail_500x300.url }}" alt=""></a>
 	</div>
@@ -84,6 +113,5 @@
 	</div>
 	{% endfor %}
 
-</div>
-<!-- /.row -->
+</div><!-- /.row -->
 {% endblock %}
