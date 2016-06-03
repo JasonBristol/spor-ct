@@ -39,7 +39,7 @@
 		<div class="thumbnail">
 			<img class="img-responsive img-rounded" src="{{ MEDIA_URL }}{{ i.thumbnail.url }}" alt="{{ i.fname }} {{ i.lname }}">
 			<div class="caption">
-				<h3>{{ i.fname }} {{ i.lname }}<br>
+				<h3>{{ i.first_name }} {{ i.last_name }}<br>
 					<small>{{ i.title }}</small>
 				</h3>
 				<p>{{ i.description }}</p>
@@ -62,8 +62,8 @@
 <div class="well">
   <div class="row">
     <div class="col-md-8">
-    	<h4>Interested in becoming a member of the team?</h4>
-      <p>We are always interested in prospective members. If you think you have the experience and drive to join our team, please feel free to submit an application.</p>
+    	<h4>Interested in joining our team?</h4>
+      <p>If you think you have the experience and drive to join our team, please feel free to submit an application.</p>
     </div>
     <div class="col-md-4">
       <button class="btn btn-lg btn-default btn-block" type="button" data-toggle="modal" data-target="#recruitModal">Apply Now</button>
