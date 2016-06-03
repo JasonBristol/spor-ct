@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^contact/', home.views.contact),
     url(r'^help/', include('helper.urls')),
     url(r'^area51/', include('area51.urls')),
-    url(r'^blessedbethyname/', admin.site.urls),
+    url(settings.ADMIN_URL, admin.site.urls),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     url(r'^$', home.views.index),
