@@ -93,7 +93,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': DB_PASS,
         'TEST': {
-            'NAME': 'testdb',
+            'NAME': 'testdb_spor',
         }
     }
 }
