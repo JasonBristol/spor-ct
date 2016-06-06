@@ -3,7 +3,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-	url(r'^portfolio-1-col/$', views.portfolio_1_col),
+    url(r'^portfolio-1-col/$', views.portfolio_1_col),
     url(r'^portfolio-2-col/$', views.portfolio_2_col),
     url(r'^portfolio-3-col/$', views.portfolio_3_col),
     url(r'^portfolio-4-col/$', views.portfolio_4_col),

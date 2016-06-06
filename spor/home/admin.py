@@ -34,12 +34,12 @@ class TeamMemberForm(forms.ModelForm):
         return self.cleaned_data
 
 class TeamMemberAdmin(admin.ModelAdmin):
-	form = TeamMemberForm
+    form = TeamMemberForm
 
 admin.site.register(TeamMember, TeamMemberAdmin)
 
 class PartnerAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 admin.site.register(Partner, PartnerAdmin)
 
@@ -81,21 +81,21 @@ class ContactForm(forms.ModelForm):
         return self.cleaned_data
 
 class ContactAdmin(admin.ModelAdmin):
-	form = ContactForm
+    form = ContactForm
 
 admin.site.register(Contact, ContactAdmin)
 
 class BannerAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 admin.site.register(Banner, BannerAdmin)
 
 class AlertAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 admin.site.register(Alert, AlertAdmin)
 
 class ModalAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 admin.site.register(Modal, ModalAdmin)
