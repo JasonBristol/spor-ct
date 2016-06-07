@@ -1,0 +1,11 @@
+doc-warnings: yes
+test-warnings: no
+strictness: veryhigh
+max-line-length: 250
+uses:
+    - django
+autodetect: yes
+requirements:
+    - requirements.txt
+python-targets:
+    - 2
