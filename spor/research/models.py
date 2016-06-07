@@ -6,6 +6,7 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from django.utils.text import slugify
 
+
 class Project(models.Model):
     title = models.CharField(max_length=50)
     tagline = models.CharField(max_length=255)

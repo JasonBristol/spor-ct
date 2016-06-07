@@ -3,11 +3,13 @@ from .models import Case
 from itertools import chain
 from operator import attrgetter
 
+
 def index(request):
     cases = Case.objects.filter(public=True)
     return render(request, 'investigations/index.html', {'cases': cases})
 
-def case(request, slug):
+
+def investigation_case(request, slug):
     case = get_object_or_404(Case, slug=slug)
     related_cases = case.related_cases.filter(public=True)
     team_members = case.present_team_members.all()

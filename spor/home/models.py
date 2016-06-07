@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+
 class TeamMember(models.Model):
     first_name = models.CharField(max_length=50, verbose_name="First Name")
     last_name = models.CharField(max_length=100, verbose_name="Last Name")
@@ -19,8 +20,9 @@ class TeamMember(models.Model):
     def __unicode__(self):
         return "{fname} {lname}".format(fname=self.first_name, lname=self.last_name)
 
-    class Meta:
-        verbose_name="Team Member"
+    class Meta(object):
+        verbose_name = "Team Member"
+
 
 class Partner(models.Model):
     name = models.CharField(max_length=50)
@@ -29,6 +31,7 @@ class Partner(models.Model):
 
     def __unicode__(self):
         return self.name
+
 
 class Contact(models.Model):
     address = models.CharField(max_length=50)
@@ -64,12 +67,14 @@ class Contact(models.Model):
             self.google_map_url = "https://www.google.com/maps/embed/v1/place?key={key}&q={uri}".format(key=settings.GOOGLE_MAPS_EMBED_API_KEY, uri=uri)
         super(Contact, self).save(*args, **kw)
 
+
 class Banner(models.Model):
     image = models.ImageField(upload_to="images/banners")
     caption = models.CharField(max_length=25)
 
     def __unicode__(self):
         return self.caption
+
 
 class Alert(models.Model):
     SEVERITY = (
@@ -87,7 +92,8 @@ class Alert(models.Model):
 
     def __unicode__(self):
         return self.header
-        
+
+  
 class Modal(models.Model):
     SEVERITY = (
         ("default", "Default"),

@@ -8,20 +8,23 @@ from django.utils.text import slugify
 
 import itertools
 
+
 class Category(models.Model):
     name = models.CharField(max_length=25)
 
     def __unicode__(self):
         return self.name
 
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "categories"
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=25)
 
     def __unicode__(self):
         return self.name
+
 
 class Post(models.Model):
     STATUS_CHOICES = (
@@ -51,7 +54,7 @@ class Post(models.Model):
 
     def __unicode__(self):
         return "{title} by {author}".format(
-            title=self.title, 
+            title=self.title,
             author=self.author
         )
 

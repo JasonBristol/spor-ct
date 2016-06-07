@@ -3,6 +3,7 @@ from .models import TeamMember, Partner, Contact, Banner, Alert, Modal
 from django.core.validators import EMPTY_VALUES
 from django import forms
 
+
 class TeamMemberForm(forms.ModelForm):
     class Meta:
         model = TeamMember
@@ -33,15 +34,18 @@ class TeamMemberForm(forms.ModelForm):
 
         return self.cleaned_data
 
+
 class TeamMemberAdmin(admin.ModelAdmin):
     form = TeamMemberForm
 
 admin.site.register(TeamMember, TeamMemberAdmin)
 
+
 class PartnerAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Partner, PartnerAdmin)
+
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -80,20 +84,24 @@ class ContactForm(forms.ModelForm):
 
         return self.cleaned_data
 
+
 class ContactAdmin(admin.ModelAdmin):
     form = ContactForm
 
 admin.site.register(Contact, ContactAdmin)
+
 
 class BannerAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Banner, BannerAdmin)
 
+
 class AlertAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Alert, AlertAdmin)
+
 
 class ModalAdmin(admin.ModelAdmin):
     pass

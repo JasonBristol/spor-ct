@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class FAQ(models.Model):
     question = models.CharField(max_length=255)
     answer = models.TextField()
@@ -10,8 +11,9 @@ class FAQ(models.Model):
     def __unicode__(self):
         return self.question
 
-    class Meta:
+    class Meta(object):
         verbose_name = "FAQ"
+
 
 class BugCategory(models.Model):
     name = models.CharField(max_length=25)
@@ -20,8 +22,9 @@ class BugCategory(models.Model):
     def __unicode__(self):
         return self.name
 
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Bug Categories"
+
 
 class BugReport(models.Model):
     BUG_SEVERITY = (
@@ -49,10 +52,11 @@ class BugReport(models.Model):
     date_submitted = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return "{name} - {date}".format(name=self.category.name, date=self.date_submitted) # Investigate a bug-id
+        return "{name} - {date}".format(name=self.category.name, date=self.date_submitted)  # Investigate a bug-id
 
-    class Meta:
+    class Meta(object):
         verbose_name = "Bug Report"
+
 
 class KnownIssue(models.Model):
     tagline = models.CharField(max_length=255)
@@ -62,5 +66,5 @@ class KnownIssue(models.Model):
     def __unicode__(self):
         return self.tagline
 
-    class Meta:
+    class Meta(object):
         verbose_name = "Known Issue"

@@ -1,6 +1,7 @@
 from home.models import Banner, Alert, Modal
 from django.conf import settings
 
+
 def get_extras(request):
     banners = Banner.objects.all()
     site_alerts = Alert.objects.all()

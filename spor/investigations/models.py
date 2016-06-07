@@ -8,12 +8,13 @@ from imagekit.processors import ResizeToFill
 from django.utils.text import slugify
 import os
 
+
 class AudioEvidence(models.Model):
     label = models.CharField(max_length=50)
     file = models.FileField(upload_to="investigation/{0}/audio".format(1))
     details = models.TextField(blank=True, null=True)
 
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Audio Evidence"
 
     def __unicode__(self):
@@ -29,34 +30,37 @@ class AudioEvidence(models.Model):
             return 'wav'
         return 'other'
 
+
 class ImageEvidence(models.Model):
     label = models.CharField(max_length=50)
     file = models.ImageField(upload_to="investigation/{0}/image".format(1))
     details = models.TextField(blank=True, null=True)
 
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Image Evidence"
 
     def __unicode__(self):
         return self.label
+
 
 class PersonalExperience(models.Model):
     label = models.CharField(max_length=50)
     file = models.FileField(upload_to="investigation/{0}/text".format(1), blank=True)
     details = models.TextField(blank=True, null=True)
 
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Personal Experiences"
 
     def __unicode__(self):
         return self.label
+
 
 class VideoEvidence(models.Model):
     label = models.CharField(max_length=50)
     file = models.FileField(upload_to="investigation/{0}/video".format(1))
     details = models.TextField(blank=True, null=True)
 
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Video Evidence"
 
     def __unicode__(self):
@@ -72,16 +76,18 @@ class VideoEvidence(models.Model):
             return 'webm'
         return 'other'
 
+
 class MiscEvidence(models.Model):
     label = models.CharField(max_length=50)
     file = models.FileField(upload_to="investigation/{0}/misc".format(1), blank=True)
     details = models.TextField(blank=True, null=True)
 
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Misc Evidence"
 
     def __unicode__(self):
         return self.label
+
 
 class GuestInvestigator(models.Model):
     first_name = models.CharField(max_length=50)
@@ -90,6 +96,7 @@ class GuestInvestigator(models.Model):
 
     def __unicode__(self):
         return "{fname} {lname}".format(fname=self.first_name, lname=self.last_name)
+
 
 class Case(models.Model):
     CONCLUSIONS = (
