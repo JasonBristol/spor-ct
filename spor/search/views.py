@@ -17,7 +17,7 @@ def search(request):
 def search_blog(request, slug):
     query = "search-query"
 
-    MODEL_MAP = {
+    model_map = {
         Post: ["title", "tagline", "body", "author", "category", "tags"],
         Category: ["name"],
         Tag: ["name"],
@@ -25,7 +25,7 @@ def search_blog(request, slug):
 
     objects = []
 
-    for model, fields in MODEL_MAP.iteritems():
+    for model, fields in model_map.iteritems():
         objects += generic_search(request, model, fields, query)
 
     return render(request, "blog/search_results.html", {

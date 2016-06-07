@@ -93,7 +93,7 @@ class Alert(models.Model):
     def __unicode__(self):
         return self.header
 
-  
+
 class Modal(models.Model):
     SEVERITY = (
         ("default", "Default"),

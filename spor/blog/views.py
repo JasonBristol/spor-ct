@@ -6,8 +6,8 @@ def index(request):
     blog_posts = Post.objects.all()
     tags = Tag.objects.all()
     categories = Category.objects.all()
-    cat_1 = categories[len(categories)/2:]
-    cat_2 = categories[:len(categories)/2]
+    cat_1 = categories[len(categories) / 2:]
+    cat_2 = categories[:len(categories) / 2]
 
     return render(request, 'blog/index.html', {
         'blog_posts': blog_posts,

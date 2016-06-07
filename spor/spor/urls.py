@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^research/', include('research.urls')),
     url(r'^blog/', include('blog.urls')),
     url(r'^services/', home.views.services),
-    url(r'^contact/', home.views.contact),
+    url(r'^contact/', home.views.contact_page),
     url(r'^help/', include('helper.urls')),
     url(r'^area51/', include('area51.urls')),
     url(settings.ADMIN_URL, admin.site.urls),

@@ -16,6 +16,6 @@ def services(request):
     return render(request, 'home/services.html')
 
 
-def contact(request):
+def contact_page(request):
     contact = Contact.objects.get(primary_contact=True)
     return render(request, 'home/contact.html', {'contact': contact})

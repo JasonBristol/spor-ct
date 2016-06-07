@@ -5,7 +5,7 @@ from django.db.models import Q
 
 def normalize_query(
     query_string,
-    findterms=re.compile(r'"([^"]+)"|(\S+)').findall, 
+    findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
     normspace=re.compile(r'\s{2,}').sub
 ):
 
@@ -22,12 +22,12 @@ def build_query(query_string, search_fields):
     for term in terms:
         or_query = None  # Query to search for a given term in each field
         for field_name in search_fields:
-            qu = Q(**{"{field}__icontains".format(field=field_name): term})
+            subquery = Q(**{"{field}__icontains".format(field=field_name): term})
 
             if or_query:
-                or_query = or_query | qu
+                or_query = or_query | subquery
             else:
-                or_query = qu
+                or_query = subquery
 
         if query:
             query = query & or_query
