@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["71.233.186.207"]
+ALLOWED_HOSTS = MY_ALLOWED_HOSTS
 
-ADMINS = [('Jason', 'gethsemane369@gmail.com')]
+ADMINS = MY_ADMINS
 
 ADMIN_HONEYPOT_EMAIL_ADMINS = True
 
