@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["71.233.186.207"]
 
 ADMINS = [('Jason', 'gethsemane369@gmail.com')]
 
@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'spor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangodb',
+        'NAME': 'spor',
         'USER': 'root',
         'PASSWORD': DB_PASS,
         'TEST': {
-            'NAME': 'testdb_spor',
+            'NAME': 'test_spor',
         }
     }
 }
