@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-from .secret_settings import SECRET_KEY, ADMIN_URL, DB_PASS, EMAIL_PASSWORD, MY_ADMINS, MY_ALLOWED_HOSTS
+from .secret_settings import SECRET_KEY, ADMIN_URL, DB_PASS, FB_APP_ID, GOOGLE_MAPS_EMBED_API_KEY, MY_ADMINS, MY_ALLOWED_HOSTS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
