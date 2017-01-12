@@ -117,7 +117,6 @@ class KnownIssue(BaseModel):
         verbose_name = "Known Issue"
 
 
-
 class TeamMember(BaseModel):
     """
     """

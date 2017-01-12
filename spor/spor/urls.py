@@ -21,6 +21,7 @@ import home.views
 
 urlpatterns = [
     url(r'^about/', home.views.about),
+    url(r'^help/', home.views.help_page),
     url(r'^events/', include('events.urls')),
     url(r'^investigations/', include('investigations.urls')),
     url(r'^research/', include('research.urls')),

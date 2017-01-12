@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'research.apps.ResearchConfig',
     'investigations.apps.InvestigationsConfig',
     'events.apps.EventsConfig',
-    'helper.apps.HelperConfig',
     'area51.apps.Area51Config',
     'home.apps.HomeConfig',
     'api.apps.ApiConfig',

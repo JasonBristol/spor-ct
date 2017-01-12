@@ -31,7 +31,12 @@ admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
 class BugReportAdmin(admin.ModelAdmin):
-    
+    list_display = ('category', 'date_submitted', 'severity', 'status', 'assignee')
+    list_filter = ('category', 'severity', 'status', 'assignee')
+    ordering = ['date_submitted']
+
+admin.site.register(BugReport, BugReportAdmin)
+
 
 class TeamMemberForm(forms.ModelForm):
     class Meta:
@@ -127,12 +132,24 @@ admin.site.register(Banner, BannerAdmin)
 
 
 class AlertAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('header', 'get_severity', 'dismissable', 'enabled', 'date_created')
+    list_filter = ('severity', 'dismissable', 'enabled', 'date_created')
+    ordering = ['-date_created']
+
+    def get_severity(self, obj):
+        return obj.get_severity_display()
+    get_severity.short_description = 'Severity'
 
 admin.site.register(Alert, AlertAdmin)
 
 
 class ModalAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('header', 'get_severity', 'popup', 'enabled', 'date_created')
+    list_filter = ('severity', 'popup', 'enabled', 'date_created')
+    ordering = ['-date_created']
+
+    def get_severity(self, obj):
+        return obj.get_severity_display()
+    get_severity.short_description = 'Severity'
 
 admin.site.register(Modal, ModalAdmin)
