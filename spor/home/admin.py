@@ -1,8 +1,37 @@
 from django.contrib import admin
-from .models import TeamMember, Partner, Contact, Banner, Alert, Modal
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from .models import TeamMember, Partner, Contact, Banner, Alert, Modal, BugReport, KnownIssue, UserProfile, FAQ, BugCategory
 from django.core.validators import EMPTY_VALUES
 from django import forms
 
+
+class UserProfileInline(admin.StackedInline):
+    model = UserProfile
+    can_delete = False
+
+
+class UserAdmin(BaseUserAdmin):
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_active', 'staff', 'superuser', 'last_login')
+    list_filter = ('is_active', 'is_superuser', 'last_login')
+    inlines = (UserProfileInline,)
+
+    def staff(self, obj):
+        # Proxy function to rename column label
+        return obj.is_staff
+    staff.boolean = True
+
+    def superuser(self, obj):
+        # Proxy function to rename column label
+        return obj.is_superuser
+    superuser.boolean = True
+
+# Re-register UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
+
+class BugReportAdmin(admin.ModelAdmin):
+    
 
 class TeamMemberForm(forms.ModelForm):
     class Meta:
