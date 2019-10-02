@@ -13,24 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 import home.views
 
 urlpatterns = [
-    url(r'^about/', home.views.about),
-    url(r'^help/', home.views.help_page),
-    url(r'^events/', include('events.urls')),
-    url(r'^investigations/', include('investigations.urls')),
-    url(r'^research/', include('research.urls')),
-    url(r'^blog/', include('blog.urls')),
-    url(r'^services/', home.views.services),
-    url(r'^contact/', home.views.contact_page),
-    url(r'^area51/', include('area51.urls')),
-    url(settings.ADMIN_URL, admin.site.urls),
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    url(r'^$', home.views.index),
+    path('about/', home.views.about),
+    path('help/', home.views.help_page),
+    path('events/', include('events.urls')),
+    path('investigations/', include('investigations.urls')),
+    path('research/', include('research.urls')),
+    path('blog/', include('blog.urls')),
+    path('services/', home.views.services),
+    path('contact/', home.views.contact_page),
+    path('area51/', include('area51.urls')),
+    path(settings.ADMIN_URL, admin.site.urls),
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('', home.views.index),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

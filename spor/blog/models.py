@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from django.utils.text import slugify
+from django.urls import reverse
 
 import itertools
 
@@ -33,7 +34,7 @@ class Post(models.Model):
         ('w', 'Withdrawn'),
     )
 
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, on_delete=models.PROTECT)
     title = models.CharField(max_length=50, default="Blog Post")
     tagline = models.CharField(max_length=100)
     body = models.TextField(help_text="You can include HTML markup in the post body")
@@ -48,9 +49,8 @@ class Post(models.Model):
 
     slug = models.SlugField(unique=True, help_text="Only change this if you know what you are doing")
 
-    @models.permalink
     def get_absolute_url(self):
-        return 'blog:post', (self.slug,)
+        return reverse('blog:post', args=[self.slug])
 
     def __unicode__(self):
         return "{title} by {author}".format(

@@ -1,16 +1,16 @@
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 import search.views
 
 urlpatterns = [
-    url(r'^$', views.index),
-    url(r'^post/(?P<slug>[\w-]+)', views.blog_post, name='post-detail'),
-    url(r'^posts/(?P<year>[0-9]{4})/$', views.year_archive, name='posts-year-archive'),
-    url(r'^posts/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/$', views.month_archive, name='posts-month-archive'),
-    url(r'^posts/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/(?P<day>[0-9]{2})/$', views.day_archive, name='posts-day-archive'),
-    url(r'^category/(?P<category>[\w-]+)', views.post_category, name="post-category"),
-    url(r'^tag/(?P<tag>[\w-]+)', views.post_tag, name="post-tag"),
-    url(r'^search/', search.views.search),
-    url(r'^search/(?P<slug>[\w-]+)', search.views.search_blog, name="search-blog"),
+    path('', views.index),
+    path('post/<slug>/', views.blog_post, name='post-detail'),
+    path('posts/<year>/', views.year_archive, name='posts-year-archive'),
+    path('posts/<year>/<month>/', views.month_archive, name='posts-month-archive'),
+    path('posts/<year>/<month>/<day>/', views.day_archive, name='posts-day-archive'),
+    path('category/<category>/', views.post_category, name="post-category"),
+    path('tag/<tag>/', views.post_tag, name="post-tag"),
+    path('search/', search.views.search),
+    path('search/<slug>/', search.views.search_blog, name="search-blog"),
 ]

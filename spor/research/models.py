@@ -11,7 +11,7 @@ class Project(models.Model):
     title = models.CharField(max_length=50)
     tagline = models.CharField(max_length=255)
     description = models.TextField()
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, on_delete=models.PROTECT)
     thumbnail = models.ImageField(upload_to="research/img")
     thumbnail_200x100 = ImageSpecField(source='thumbnail', processors=[ResizeToFill(200, 100)], format='PNG', options={'quality': 100})
     thumbnail_500x300 = ImageSpecField(source='thumbnail', processors=[ResizeToFill(500, 300)], format='PNG', options={'quality': 100})

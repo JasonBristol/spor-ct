@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-from .secret_settings import SECRET_KEY, ADMIN_URL, DB_PASS, FB_APP_ID, GOOGLE_MAPS_EMBED_API_KEY, MY_ADMINS, MY_ALLOWED_HOSTS
+from .secret_settings import SECRET_KEY, ADMIN_URL, FB_APP_ID, GOOGLE_MAPS_EMBED_API_KEY, MY_ADMINS, MY_ALLOWED_HOSTS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -51,14 +51,14 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE_CLASSES = [
-    'django.contrib.admindocs.middleware.XViewMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.admindocs.middleware.XViewMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -87,10 +87,9 @@ WSGI_APPLICATION = 'spor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'spor',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'USER': 'root',
-        'PASSWORD': DB_PASS,
         'TEST': {
             'NAME': 'test_spor',
         }
@@ -130,14 +129,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
@@ -145,3 +144,10 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     # os.path.join(BASE_DIR, "static"),
 )
+
+# Due to an issue with Django 2.21 (https://code.djangoproject.com/ticket/30237)
+SILENCED_SYSTEM_CHECKS = [
+    'admin.E408',
+	'admin.E409',
+	'admin.E410'
+]

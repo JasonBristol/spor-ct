@@ -1,7 +1,7 @@
 from .utils import generic_search
 from blog.models import Post, Category, Tag
 from django.shortcuts import render, redirect
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 def search(request):
